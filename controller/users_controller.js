@@ -1,12 +1,31 @@
 const User = require('../models/user');
 
 
-module.exports.profile = function(request, respond){
+module.exports.profile = async function(request, respond){
     // return respond.end('<h1>User Profile Placement cell APP</h1>');
 
-    return respond.render('user_profile', {
-        title: "user_profile"
-    });
+    // return respond.render('user_profile', {
+    //     title: "user_profile"
+    // });
+
+    try {
+        if (request.cookies.user_id) {
+            const user = await User.findById(request.cookies.user_id).exec();
+            if (user) {
+                return respond.render('user_profile', {
+                    title: "User profile",
+                    user: user
+                });
+            } else {
+                return respond.redirect('/users/sign-in');
+            }
+        } else {
+            return respond.redirect('/users/sign-in');
+        }
+    } catch (err) {
+        console.log('Error in finding user in profile:', err);
+        return respond.status(500).send('Internal Server Error');
+    }
 }
 
 // render the sign up page
