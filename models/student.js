@@ -39,6 +39,20 @@ const studentSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    interviews: [
+       {
+            company: {
+                type: String,
+            },
+            date: {
+                type: String,
+            },
+            result: {
+                type: String,
+                enum: ['On Hold', 'Selected', 'Pending', 'Not Selected', 'Did not Attempt'],
+            },
+       }
+    ]
     
 },{
     timestamps: true
