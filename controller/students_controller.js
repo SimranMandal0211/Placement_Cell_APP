@@ -40,6 +40,25 @@ module.exports.createStudent = async function(request, respond){
     }
 };
 
+module.exports.deleteStudent = async function(request, respond){
+    try {
+        const studentId = request.params.id; 
+        
+        // Find the student by ID and delete
+        const deletedStudent = await Student.findByIdAndRemove(studentId);
 
+        if (!deletedStudent) {
+            console.log('Student not found');
+            return respond.redirect('back');
+        }
+
+        console.log('Student deleted successfully');
+    
+        return respond.redirect('/');     
+    } catch (error) {
+        console.error('Error deleting student:', error);
+        return respond.redirect('back');   
+    }
+};
 
 
