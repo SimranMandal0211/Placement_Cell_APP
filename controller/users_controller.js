@@ -4,32 +4,36 @@ const User = require('../models/user');
 module.exports.profile = async function(request, respond){
     // return respond.end('<h1>User Profile Placement cell APP</h1>');
 
-    // return respond.render('user_profile', {
-    //     title: "user_profile"
-    // });
+    return respond.render('user_profile', {
+        title: "user_profile"
+    });
 
-    try {
-        if (request.cookies.user_id) {
-            let user = await User.findById(request.cookies.user_id).exec();
-            if (user) {
-                return respond.render('user_profile', {
-                    title: "User profile",
-                    user: user
-                });
-            } else {
-                return respond.redirect('/users/sign-in');
-            }
-        } else {
-            return respond.redirect('/users/sign-in');
-        }
-    } catch (err) {
-        console.log('Error in finding user in profile:', err);
-        return respond.status(500).send('Internal Server Error');
-    }
+    // try {
+    //     if (request.cookies.user_id) {
+    //         let user = await User.findById(request.cookies.user_id).exec();
+    //         if (user) {
+    //             return respond.render('user_profile', {
+    //                 title: "User profile",
+    //                 user: user
+    //             });
+    //         } else {
+    //             return respond.redirect('/users/sign-in');
+    //         }
+    //     } else {
+    //         return respond.redirect('/users/sign-in');
+    //     }
+    // } catch (err) {
+    //     console.log('Error in finding user in profile:', err);
+    //     return respond.status(500).send('Internal Server Error');
+    // }
 }
 
 // render the sign up page
 module.exports.signUp = function(request, respond){
+    if(request.isAuthenticated()){
+        return respond.redirect('/users/profile');
+    }
+    
     return respond.render('user_sign_up', {
         title: "Placement Cell | Sign Up"
     })
@@ -37,6 +41,10 @@ module.exports.signUp = function(request, respond){
 
 // render the sign in page
 module.exports.signIn = function(request, respond){
+    if(request.isAuthenticated()){
+        return respond.redirect('/users/profile');
+    }
+    
     return respond.render('user_sign_in',{
         title: "Placement Cell | Sign In"
     })
@@ -88,4 +96,9 @@ module.exports.createSession = async function (request, respond) {
     //     console.log('Error:', err);
     //     return respond.redirect('back'); // Handle errors by redirecting back
     // }
+};
+
+module.exports.destroySession = function(request, respond){
+    request.logout();
+    return respond.redirect('/');
 };
