@@ -10,7 +10,7 @@ module.exports.profile = async function(request, respond){
 
     try {
         if (request.cookies.user_id) {
-            const user = await User.findById(request.cookies.user_id).exec();
+            let user = await User.findById(request.cookies.user_id).exec();
             if (user) {
                 return respond.render('user_profile', {
                     title: "User profile",
@@ -67,23 +67,25 @@ module.exports.create = async function(request, respond) {
 };
 
 // get the signIn data
-module.exports.createSession = async function(request, respond) {
-    try {
-        const user = await User.findOne({ email: request.body.email });
+module.exports.createSession = async function (request, respond) {
+    return respond.redirect('/');
 
-        if (user) {
-            if (user.password === request.body.password) {
-                // Create a session by setting a user_id cookie
-                respond.cookie('user_id', user.id);
-                return respond.redirect('/users/profile');
-            } else {
-                return respond.redirect('back'); // Passwords don't match
-            }
-        } else {
-            return respond.redirect('back'); // User not found
-        }
-    } catch (err) {
-        console.log('Error:', err);
-        return respond.redirect('back'); // Handle errors by redirecting back
-    }
+    // try {
+    //    let user = await User.findOne({ email: request.body.email });
+
+    //     if (user) {
+    //         if (user.password === request.body.password) {
+    //             // Create a session by setting a user_id cookie
+    //             respond.cookie('user_id', user.id);
+    //             return respond.redirect('/users/profile');
+    //         } else {
+    //             return respond.redirect('back'); // Passwords don't match
+    //         }
+    //     } else {
+    //         return respond.redirect('back'); // User not found
+    //     }
+    // } catch (err) {
+    //     console.log('Error:', err);
+    //     return respond.redirect('back'); // Handle errors by redirecting back
+    // }
 };
