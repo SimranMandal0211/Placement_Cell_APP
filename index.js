@@ -9,9 +9,6 @@ const port = 8000;
 // set up the layouts
 const expressLayouts = require('express-ejs-layouts');
 
-// use assets like css js and images
-app.use(express.static('./assets'));
-
 app.use(expressLayouts);
 
 // setup database
@@ -56,7 +53,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use(passport.setAuthenticatedUser);
 
 // use express router
 app.use('/', require('./routes'));
