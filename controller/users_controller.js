@@ -99,6 +99,10 @@ module.exports.createSession = async function (request, respond) {
 };
 
 module.exports.destroySession = function(request, respond){
-    request.logout();
-    return respond.redirect('/');
+    request.logout(function(err) {
+        if (err) {
+            console.error('Error destroying session:', err);
+        }
+        return respond.redirect('/');
+    });
 };

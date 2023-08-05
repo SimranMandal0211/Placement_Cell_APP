@@ -1,5 +1,6 @@
 <h1>Add Student !!</h1>
 
+<% if(locals.user){ %>
 <form action="/students/create-student" method="POST">
     <input type="text" name="name" placeholder="Name" required>
     <input type="email" name="email" placeholder="Email" required>
@@ -13,3 +14,4 @@
     <input type="number" name="react" placeholder="React Score" required>
     <button type="submit">Add Student</button>
 </form>
+<% } %>
