@@ -1,0 +1,15 @@
+<h1>Add Student !!</h1>
+
+<form action="/students/create-student" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="college" placeholder="College" required>
+    <input type="radio" name="placement" value="Placed" required> Placed
+    <input type="radio" name="placement" value="Not Placed" required> Not Placed
+    <input type="number" name="contactNumber" placeholder="Contact Number" required>
+    <input type="text" name="batch" placeholder="Batch" required>
+    <input type="number" name="dsa" placeholder="DSA Score" required>
+    <input type="number" name="webd" placeholder="Web Development Score" required>
+    <input type="number" name="react" placeholder="React Score" required>
+    <button type="submit">Add Student</button>
+</form>

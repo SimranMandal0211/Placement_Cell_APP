@@ -1,2 +1,21 @@
 <!-- Only add variable parts -->
-<h1>Codeial / <%= title %></h1>
+<h1>Placement Cell / <%= title %></h1>
+
+<a href="/students/create">+ Add Student</a>
+
+<h1>List of Students</h1>
+<ul style="border: 2px solid black; height: 2rem;">
+    <% students.forEach(student => { %>
+    <li>
+        <span><%= student.batch %></span>
+        <span><%= student.name %></span> 
+        <span><%= student.email %></span>
+        <span><%= student.contactNumber %></span>
+        <span><%= student.placement %></span>
+        <span><%= student.dsa %></span>
+        <span><%= student.webd %></span>
+        <span><%= student.react %></span>
+        <a href="/students/delete/<%= student._id %>">Delete</a>
+    </li>
+    <% }); %>
+</ul>
