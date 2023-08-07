@@ -9,6 +9,7 @@ a{
 header{
     background-color: rgb(52, 59, 62);
     padding:1rem 2rem;
+    width: 96%;
 }
 
 header a{
@@ -17,11 +18,12 @@ header a{
 
 header ul{
     justify-content: space-around;
-    /* border: 2px solid green; */
+    /* border: 2px solid white; */
     font-size: 1.2rem;
     font-weight: bold;
+    /* width: 30%; */
 }
 
 header li{
-    padding: .5rem;
+    padding: .5rem .8rem;
 }

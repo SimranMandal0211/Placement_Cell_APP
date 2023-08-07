@@ -1,22 +1,41 @@
 <!-- Only add variable parts -->
-<h1>Placement Cell / <%= title %></h1>
+<link rel="stylesheet" href="/css/home.css">
 
-<a href="/students/create">+ Add Student</a>
+<div class="flex home-box">
+    <div class="flex home-heading">        
+        <h1>List of Students:</h1>
+        <a href="/students/create" class="add-student-btn">+ Add Student</a>
+    </div>
 
 
-<h1>List of Students</h1>
-<ul style="border: 2px solid black; height: 2rem;">
-    <% students.forEach(student => { %>
-    <li>
-        <span><%= student.batch %></span>
-        <span><%= student.name %></span> 
-        <span><%= student.email %></span>
-        <span><%= student.contactNumber %></span>
-        <span><%= student.placement %></span>
-        <span><%= student.dsa %></span>
-        <span><%= student.webd %></span>
-        <span><%= student.react %></span>
-        <a href="/students/delete/<%= student._id %>">Delete</a>
-    </li>
-    <% }); %>
-</ul>
+    <table>
+        <thead>
+          <tr>
+            <th>Batch</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>DSA</th>
+            <th>Web</th>
+            <th>React</th>
+            <th>Interview</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(student => { %>
+          <tr>
+            <td><%= student.batch %></td>
+            <td><%= student.name %></td>
+            <td><%= student.email %></td>
+            <td><%= student.contactNumber %></td>
+            <td><%= student.dsa %></td>
+            <td><%= student.webd %></td>
+            <td><%= student.react %></td>
+            <td><%= student.interviews.company %></td>
+            <td><a href="/students/delete/<%= student._id %>" class="red-btn delete-btn">Delete</a></td>
+          </tr>
+          <% }); %>
+        </tbody>
+    </table>     
+</div>

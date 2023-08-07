@@ -5,6 +5,7 @@
 }
 body{
     background-color: rgb(230, 230, 230);
+    overflow: hidden;
 }
 .flex{
     display: flex;
@@ -13,7 +14,20 @@ body{
 }
 
 .box{
-    /* border: 2px solid red; */
+    border: 2px solid red;
     height: 85vh;
+    flex-direction: column;
     justify-content: center;
+}
+
+.red-btn{
+    background-color: red;
+    border: 2px solid red;
+    border-radius: .2rem;
+    color: white;
+    font-weight: bold;
+}
+
+.red-btn:hover{
+    background-color: rgb(225, 4, 4);
 }
