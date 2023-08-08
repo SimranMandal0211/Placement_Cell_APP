@@ -1,19 +1,48 @@
-<h1>Students Associated with Company</h1>
+<link rel="stylesheet" href="/css/company-Home.css">
 
-<h2>Allocate Interview</h2>
-<form action="/company/allocate" method="GET">
-    <button type="submit">Allocate Interview</button>
-</form>
+<div class="company-home-box flex">
+    <div class="company-home-heading flex">
+        <h1>Interview</h1>
+        <form action="/company/allocate" method="GET">
+            <button type="submit" class="allocate-student-btn">Allocate Interview</button>
+        </form>
+    </div>
 
-<ul>
-    <% for (const student of students) { %>
-        <li>
-            <%= student.name %> - <%= student.college %>
-            <form action="/company/update-status/<%= student.id %>" method="POST">
-                <input type="text" name="companyResult" placeholder="Company Result">
-                <button type="submit">Update Status</button>
-            </form>
-        </li>
-    <% } %>
-</ul>
+    <table>
+        <tr class="thead">
+            <th>Company</th>
+            <th>Student</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Batch</th>
+            <th>Interview Date</th>
+            <th>Result</th>
+        </tr>
+        <% for (const student of students) { %>
+        <tr class="tbody">
+            <td style="font-weight: bold;"><%= student.interviews.company %></td>
+            <td><%= student.name %></td>
+            <td><%= student.email %></td>
+            <td><%= student.contactNumber %></td>
+            <td><%= student.batch %></td>
+            <td>
+                <%= student.interviews.date %></td>
+            <td>
+                <form action="/company/update-status/<%= student.interviews.result %>" method="POST">
+                    <select id="companyResult">
+                        <option value="On Hold">On Hold</option>
+                        <option value="Selected">Selected</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Not Selected">Not Selected</option>
+                        <option value="Did not Attempt">Did not Attempt</option>
+                    </select>
+                    <button type="submit">Update Status</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+        
+    </table>
+    
+</div>
 
