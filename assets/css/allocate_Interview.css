@@ -1,0 +1,60 @@
+.schedule-form-box{
+    /* border: 2px solid green; */
+    width: 30%;
+    height: 60%;
+    background-color: white;
+    justify-content: center;
+}
+
+.schedule-form-box form{
+    /* border: 2px solid red; */
+    width: 80%;
+    height: 80%;
+    font-size: 1rem;
+    flex-direction: column;
+}
+
+.schedule-form-box .form-input{
+    /* border: 2px solid blue; */
+    width: 95%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.schedule-form-box .form-input input{
+    width: 95%;
+    padding: .3rem 0 .3rem .3rem;
+    text-align: left;
+    border: 2px solid rgba(128, 128, 128, 0.66);
+    outline: none;
+    border-radius: .3rem;
+}
+.form-select-input{
+    /* border: 2px solid green; */
+    width: 92%;
+    padding-right: .3rem;
+}
+
+.form-select-input select{
+    width: 65%;
+    border: 2px solid rgba(128, 128, 128, 0.66);
+    outline: none;
+    border-radius: .3rem;
+}
+
+.schedule-form-box label{
+    padding: .5rem;
+    font-weight: bold;
+}
+
+.schedule-form-box button{
+    width: 95%;
+    padding: .5rem 0;
+    margin: .5rem;
+    font-size: 1rem;
+    color: white;
+    background-color: green;
+    border: none;
+    outline: none;
+    border-radius: .3rem;
+}
