@@ -28,8 +28,10 @@
                 <td><%= student.batch %></td>
                 <td><%= i.date %></td>
                 <td>
-                    <form action="/company/update-status/<%= i.result %>" method="POST">
-                        <select id="companyResult">
+                    <form action="/company/update-status/<%= student._id %>" method="POST">
+                        <input type="hidden" name="companyName" value="<%= i.company %>">
+                        <select id="companyResult" name="companyResult">
+                            <option value="<%= i.result %>"><%= i.result %></option>
                             <option value="On Hold">On Hold</option>
                             <option value="Selected">Selected</option>
                             <option value="Pending">Pending</option>

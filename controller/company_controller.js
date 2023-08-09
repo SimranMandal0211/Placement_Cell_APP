@@ -92,7 +92,7 @@ module.exports.updateStatus = async function(request, respond){
 
     try{
         const student = await Student.findById(id);
-        if(student && student.interviews.legth > 0){
+        if(student && student.interviews.length > 0){
             for(let company of student.interviews){
                 if(company.company === companyName){
                     company.result = companyResult;

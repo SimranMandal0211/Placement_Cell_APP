@@ -33,7 +33,8 @@
 
 .form-box input{
     padding: .4rem 0;
-    width: 100%;
+    padding-left: .4rem;
+    width: 98%;
     text-align: left;
     outline: none;
     border-radius: .2rem;
