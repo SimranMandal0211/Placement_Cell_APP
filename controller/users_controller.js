@@ -1,4 +1,7 @@
 const User = require('../models/user');
+const Student = require('../models/student');
+const fs = require('fs');
+const path = require('path');
 
 
 module.exports.profile = async function(request, respond){
@@ -7,25 +10,6 @@ module.exports.profile = async function(request, respond){
     return respond.render('user_profile', {
         title: "user_profile"
     });
-
-    // try {
-    //     if (request.cookies.user_id) {
-    //         let user = await User.findById(request.cookies.user_id).exec();
-    //         if (user) {
-    //             return respond.render('user_profile', {
-    //                 title: "User profile",
-    //                 user: user
-    //             });
-    //         } else {
-    //             return respond.redirect('/users/sign-in');
-    //         }
-    //     } else {
-    //         return respond.redirect('/users/sign-in');
-    //     }
-    // } catch (err) {
-    //     console.log('Error in finding user in profile:', err);
-    //     return respond.status(500).send('Internal Server Error');
-    // }
 }
 
 // render the sign up page
@@ -78,24 +62,6 @@ module.exports.create = async function(request, respond) {
 module.exports.createSession = async function (request, respond) {
     return respond.redirect('/');
 
-    // try {
-    //    let user = await User.findOne({ email: request.body.email });
-
-    //     if (user) {
-    //         if (user.password === request.body.password) {
-    //             // Create a session by setting a user_id cookie
-    //             respond.cookie('user_id', user.id);
-    //             return respond.redirect('/users/profile');
-    //         } else {
-    //             return respond.redirect('back'); // Passwords don't match
-    //         }
-    //     } else {
-    //         return respond.redirect('back'); // User not found
-    //     }
-    // } catch (err) {
-    //     console.log('Error:', err);
-    //     return respond.redirect('back'); // Handle errors by redirecting back
-    // }
 };
 
 module.exports.destroySession = function(request, respond){
@@ -106,3 +72,42 @@ module.exports.destroySession = function(request, respond){
         return respond.redirect('/');
     });
 };
+
+// download report
+module.exports.downloadCsv = async function(request,respond){
+    console.log('inside dowload csv');
+    try{
+        console.log('inside dowload csv---> try');
+        const students = await Student.find({});
+
+        let data = 'S.No, Name, Email, College, Placement, Contact Number, Batch, DSA Score, WebDev Score, Interviwe, Date \n';
+        let no = 1;
+
+        for(let student of students){
+            for(let i of student.interviews){
+                data += `${no} , ${student.name} , ${student.email} , ${student.college} , ${student.placement} , ${student.contactNumber} , ${student.batch} , ${student.dsa} , ${student.webd} , ${i.company} , ${i.date}\n` ;
+                no++;
+            }
+        }
+
+        
+        console.log('student company home page', students[0].interviews[0]);
+        
+        const csvFilePath = path.join(__dirname, '..', 'report', 'data.csv');
+        fs.writeFileSync(csvFilePath, data, 'utf-8');
+
+        return respond.download(csvFilePath, 'data.csv', (err) => {
+            if (err) {
+                console.error('Download error:', err);
+                return respond.redirect('back');
+            }
+
+            // Delete the temporary CSV file after it's downloaded
+            fs.unlinkSync(csvFilePath);
+        });
+
+    }catch(err){
+        console.log('Error:', err);
+        return respond.redirect('back'); // Handle errors by redirecting back
+    }
+}

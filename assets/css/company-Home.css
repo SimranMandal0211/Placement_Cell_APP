@@ -2,7 +2,7 @@
     justify-content: unset;
     flex-direction: column;
     height: 80vh;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 .company-home-heading{
