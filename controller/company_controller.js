@@ -21,17 +21,9 @@ module.exports.allocateInterview = async function(request, respond){
     try{
         const students = await Student.find({});
 
-        let array = [];
-
-        for(let student of students){
-            array.push(student.batch);
-        }
-        // filter out duplicate batches
-        array = [...new Set(array)];
         return respond.render('allocate_Interview', {
             title: 'Placement Cell | Company Page',
-            students, 
-            array
+            students,
         });
 
     }catch(error){

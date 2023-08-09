@@ -30,7 +30,11 @@
           <td><%= student.dsa %></td>
           <td><%= student.webd %></td>
           <td><%= student.react %></td>
-          <td><%= student.interviews.company %></td>
+          <td>
+            <% student.interviews.forEach(i => { %>
+              <span><%= i.company %> ,</span>
+              <% }); %>
+          </td>
           <td><a href="/students/delete/<%= student._id %>" class="red-btn delete-btn">Delete</a></td>
         </tr>
         <% }); %>

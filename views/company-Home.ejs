@@ -19,27 +19,28 @@
             <th>Result</th>
         </tr>
         <% for (const student of students) { %>
-        <tr class="tbody">
-            <td style="font-weight: bold;"><%= student.interviews.company %></td>
-            <td><%= student.name %></td>
-            <td><%= student.email %></td>
-            <td><%= student.contactNumber %></td>
-            <td><%= student.batch %></td>
-            <td>
-                <%= student.interviews.date %></td>
-            <td>
-                <form action="/company/update-status/<%= student.interviews.result %>" method="POST">
-                    <select id="companyResult">
-                        <option value="On Hold">On Hold</option>
-                        <option value="Selected">Selected</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Not Selected">Not Selected</option>
-                        <option value="Did not Attempt">Did not Attempt</option>
-                    </select>
-                    <button type="submit">Update Status</button>
-                </form>
-            </td>
-        </tr>
+            <% for(const i of student.interviews ){ %>
+            <tr class="tbody">
+                <td style="font-weight: bold;"><%= i.company %></td>
+                <td><%= student.name %></td>
+                <td><%= student.email %></td>
+                <td><%= student.contactNumber %></td>
+                <td><%= student.batch %></td>
+                <td><%= i.date %></td>
+                <td>
+                    <form action="/company/update-status/<%= i.result %>" method="POST">
+                        <select id="companyResult">
+                            <option value="On Hold">On Hold</option>
+                            <option value="Selected">Selected</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Not Selected">Not Selected</option>
+                            <option value="Did not Attempt">Did not Attempt</option>
+                        </select>
+                        <button type="submit">Update Status</button>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
         <% } %>
         
     </table>
