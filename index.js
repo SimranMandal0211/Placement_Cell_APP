@@ -1,4 +1,7 @@
 const express = require('express');
+const env = require('./config/environment');
+const  logger = require('morgan');
+
 const app = express();
 
 // Setup for cookie
@@ -20,6 +23,7 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 
 const MongoStore = require('connect-mongo');
+const path = require('path');
 
 app.use(express.urlencoded()); //add body-parser
 
@@ -27,7 +31,9 @@ app.use(express.urlencoded()); //add body-parser
 app.use(cookieParser());
 
 // use assets like css js and images
-app.use(express.static('./assets'));
+// app.use(express.static('./assets'));
+app.use(express.static(__dirname + env.asset_path));
+app.use(logger(env.morgan.mode, env.morgan.options))
 
 
 // extract style and script from sub pages into the layout
@@ -44,14 +50,14 @@ app.set('views', './views');
 app.use(session({
     name: 'placementcellapp', 
     //Todo change the secret before deployment in production mode
-    secret: 'blashsomething',
+    secret: env.session_cookie_key,
     saveUninitialized: false, 
     resave: false,
     cookie: {
         maxAge: (1000 * 60 * 100)
     },
     Store: MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1/codeial_delopment', 
+        mongoUrl: 'mongodb://127.0.0.1/placementcellapp_devlopment', 
         autoRemove: 'disable'
     },function(err){
         console.log(err || 'connect-mongodb setup OK');
