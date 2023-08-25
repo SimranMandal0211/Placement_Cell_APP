@@ -30,6 +30,7 @@ app.use(cookieParser());
 // use assets like css js and images
 // app.use(express.static('./assets'));
 app.use(express.static(__dirname + env.asset_path));
+app.use(express.static(__dirname + '/public/assets'));
 
 // setup session using mongodb
 app.use(session({

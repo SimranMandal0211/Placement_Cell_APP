@@ -1,50 +1,46 @@
 const gulp = require('gulp');
-const hash = require('gulp-hash');
-const clearCSS = require('gulp-clean-css');
-const terser = require('gulp-terser');
+
+const rev = require('gulp-rev');   
+const uglify = require('gulp-uglify-es').default;
+// const del = require('del');
 
 
 gulp.task('css', function(done){
-    console.log('minifying css...');
-
-     gulp.src('./assets/**/*.css')
-     .pipe(clearCSS())
-     .pipe(hash())
-     .pipe(gulp.dest('public/assets/css'))
-    .pipe(hash.manifest('manifest.json', { // Generate the manifest file
-      deleteOld: true,
-      sourceDir: __dirname + '/public/css'
+    gulp.src('./assets/**/*.css')
+    .pipe(rev())
+       .pipe(gulp.dest('./public/assets'))
+    .pipe(rev.manifest({
+        cwd: 'public',
+        merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
-
-    done();
-});
-
+ done(); });
 
 
 gulp.task('js', function(done){
     console.log('minifying js...');
 
      gulp.src('./assets/**/*.js')
-     .pipe(terser({
-      output: {
-        comments: false, // Remove comments
-      }}))
-    .pipe(hash())
-    .pipe(gulp.dest('./public/assets/js'))
-    .pipe(hash.manifest('manifest.json', { // Generate the manifest file
-      deleteOld: true,
-      sourceDir: __dirname + '/public/js'
+    .pipe(uglify())
+    .pipe(rev())
+    .pipe(gulp.dest('./public/assets'))
+    .pipe(rev.manifest({
+        cwd: 'public',
+        merge: true
     }))
     .pipe(gulp.dest('./public/assets'));
-    
-    done();
-
+    done()
 });
 
 
-// Task to run both 'css' and 'js' tasks concurrently
-gulp.task('build', gulp.parallel('css', 'js'));
 
-// Default task to run 'build'
-gulp.task('default', gulp.series('build'));
+// empty the public/assets directory
+gulp.task('clean:assets', function(done){
+    // del.sync('./public/assets');
+    done();
+});
+
+gulp.task('build', gulp.series('clean:assets', 'css', 'js'), function(done){
+    console.log('Building assets');
+    done();
+});
