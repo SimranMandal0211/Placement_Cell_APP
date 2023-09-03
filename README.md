@@ -20,9 +20,9 @@ It is built using NodeJs, ExpressJs, MongoDB, EJS and JavaScript.
   - SESSION_SECRET_KEY = "Your secret session key"
 - Install all required packages
 - Run project
-    npm install 
+   ` npm install ` 
 - The project is running on the port number provided by you.
-    npm start
+   ` npm start `
 
 ## 🛠️ Tools Used
 - NodeJS
