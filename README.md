@@ -20,7 +20,9 @@ It is built using NodeJs, ExpressJs, MongoDB, EJS and JavaScript.
   - SESSION_SECRET_KEY = "Your secret session key"
 - Install all required packages
 - Run project
+    npm install 
 - The project is running on the port number provided by you.
+    npm start
 
 ## 🛠️ Tools Used
 - NodeJS
@@ -47,9 +49,9 @@ It is built using NodeJs, ExpressJs, MongoDB, EJS and JavaScript.
 - .env
 
 ## 🖼️ Screenhorts
-![signIn page]('./assets/image/signInPage.png')
-![signUp page]('./assets/image/signUpPage.png')
-![home page]('./assets/image/homePage.png')
-![Add Student Page]('./assets/image/AddStudentPage.png')
-![company List Home Page]('./assets/image/companyListHomePage.png')
-![schedule Interview Page]('./assets/image/scheduleInterviewPage.png')
+![signIn page](./assets/image/signInPage.png)
+![signUp page](./assets/image/signUpPage.png)
+![home page](./assets/image/homePage.png)
+![Add Student Page](./assets/image/AddStudentPage.png)
+![company List Home Page](./assets/image/companyListHomePage.png)
+![schedule Interview Page](./assets/image/scheduleInterviewPage.png)
