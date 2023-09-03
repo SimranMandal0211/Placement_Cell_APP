@@ -22,28 +22,34 @@ It is built using NodeJs, ExpressJs, MongoDB, EJS and JavaScript.
 - Run project
 - The project is running on the port number provided by you.
 
-  ## 🛠️ Tools Used
-  - NodeJS
-  - MongoDB
-  - EJS
+## 🛠️ Tools Used
+- NodeJS
+- MongoDB
+- EJS
 
-  ### 📚 Libraries:
-  - connect-mongo
-  - cookie-parser
-  - ejs
-  - express
-  - express-ejs-layouts
-  - express-session
-  - fs
-  - gulp
-  - gulp-rev
-  - gulp-uglify-es
-  - mongoose
-  - morgan
-  - passport
-  - passport-local
-  - path
-  - rotating-file-stream
-  - .env
+### 📚 Libraries:
+- connect-mongo
+- cookie-parser
+- ejs
+- express
+- express-ejs-layouts
+- express-session
+- fs
+- gulp
+- gulp-rev
+- gulp-uglify-es
+- mongoose
+- morgan
+- passport
+- passport-local
+- path
+- rotating-file-stream
+- .env
 
-  ## Screenhorts
+## 🖼️ Screenhorts
+![signIn page]('./assets/image/signInPage.png')
+![signUp page]('./assets/image/signUpPage.png')
+![home page]('./assets/image/homePage.png')
+![Add Student Page]('./assets/image/AddStudentPage.png')
+![company List Home Page]('./assets/image/companyListHomePage.png')
+![schedule Interview Page]('./assets/image/scheduleInterviewPage.png')
