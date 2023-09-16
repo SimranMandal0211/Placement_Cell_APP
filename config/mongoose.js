@@ -17,7 +17,7 @@ const env = require('../config/environment');
 // 2.
 module.exports.db = async () => {
     try{
-      await mongoose.connect(process.env.DB_URL)
+      await mongoose.connect(env.db)
       console.log('connect to MongoDB sucessfully')
     }catch(error){
       console.timeLog('connect failed' +error.message)
