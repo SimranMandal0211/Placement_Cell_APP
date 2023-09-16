@@ -43,7 +43,8 @@ app.use(session({
         maxAge: (1000 * 60 * 100)
     },
     Store: MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1/placementcellapp_devlopment', 
+        // mongoUrl: 'mongodb://127.0.0.1/placementcellapp_devlopment', 
+        mongoUrl: env.db,
         autoRemove: 'disable'
     },function(err){
         console.log(err || 'connect-mongodb setup OK');
