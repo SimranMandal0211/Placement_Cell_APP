@@ -14,7 +14,7 @@ const passportLocal = require('./config/passport-local-strategy');
 
 
 const app = express();
-const port = PLACEMENTCELL_PORT || 8000;
+const port = env.port || 8000;
 
 // setup database
 const db = require('./config/mongoose');
