@@ -16,6 +16,7 @@ const accessLogStream = rfs.createStream('access.log', {
 
 const development = {
     name: 'development',
+    port: '8000',
     asset_path: '/assets',
     session_cookie_key: 'blashsomething',
     db: 'placementcellapp_devlopment',
@@ -29,6 +30,7 @@ const development = {
 
 const production = {
     name: 'production',
+    port: process.env.PLACEMENTCELL_PORT,
     asset_path: process.env.PLACEMENTCELL_ASSET_PATH,
     session_cookie_key: process.env.PLACEMENTCELL_SESSION_COOKIE_KEY,
     db: process.env.PLACEMENTCELL_DB,
