@@ -1,13 +1,25 @@
 const mongoose = require('mongoose');
 const env = require('../config/environment');
 
-mongoose.connect(`mongodb://0.0.0.0/${env.db}`);
+// local mongodb connection
+// mongoose.connect(`mongodb://0.0.0.0/${env.db}`);
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, "Error connecting to mongodb"));
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, "Error connecting to mongodb"));
 
-db.once('open', function(){
-    console.log('connected to database:: MongoDB');
-});
+// db.once('open', function(){
+//     console.log('connected to database:: MongoDB');
+// });
 
-module.exports = db;
+// module.exports = db;
+
+
+// 2.
+module.exports.connectMongoose = async () => {
+    try{
+      await mongoose.connect(process.env.DB_URL)
+      console.log('connect to MongoDB sucessfully')
+    }catch(error){
+      console.timeLog('connect failed' +error.message)
+    }
+  }
