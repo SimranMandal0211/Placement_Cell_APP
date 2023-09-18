@@ -46,9 +46,10 @@ app.use(session({
         // mongoUrl: 'mongodb://127.0.0.1/placementcellapp_devlopment', 
         mongoUrl: env.db,
         autoRemove: 'disable'
-    },function(err){
+    }),
+    function(err){
         console.log(err || 'connect-mongodb setup OK');
-    })
+    }
 }));
 
 // Initialize Passport and restore authentication state if available
