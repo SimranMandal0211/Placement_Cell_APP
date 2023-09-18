@@ -11,13 +11,18 @@ const env = require('../config/environment');
 //   }
 
 // local mongodb connection
-mongoose.connect(env.db);
+mongoose
+    .connect(env.db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('connected to database:: MongoDB');
+    })
+    .catch((error) => {
+        console.error(console, "Error connecting to mongodb", error);
+    });
+
+console.log('env::', env.db);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, "Error connecting to mongodb"));
-
-db.once('open', function(){
-    console.log('connected to database:: MongoDB');
-});
 
 module.exports = db;
