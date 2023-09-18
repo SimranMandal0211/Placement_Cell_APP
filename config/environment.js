@@ -1,11 +1,14 @@
 const fs = require('fs');
 const rfs = require("rotating-file-stream");
 const path = require('path');
-require('dotenv').config();
+const dotenv = require('dotenv');
+
 
 const logDirectory = path.join(__dirname, '../production_logs');
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+fs.existsSync(leogDirectory) || fs.mkdirSync(logDirectory);
 
+
+dotenv.config();
 
 const accessLogStream = rfs.createStream('access.log', {
     interval: '1d',

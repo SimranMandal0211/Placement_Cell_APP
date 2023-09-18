@@ -17,7 +17,7 @@ mongoose
         console.log('connected to database:: MongoDB');
     })
     .catch((error) => {
-        console.error(console, "Error connecting to mongodb", error);
+        console.error(console, "Error connecting to mongodb ==>>", error);
     });
 
 console.log('env::', env.db);
