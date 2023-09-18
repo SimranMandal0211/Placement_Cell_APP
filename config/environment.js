@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 
 
 const logDirectory = path.join(__dirname, '../production_logs');
-fs.existsSync(leogDirectory) || fs.mkdirSync(logDirectory);
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
 
 dotenv.config();
