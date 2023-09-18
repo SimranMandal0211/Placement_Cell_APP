@@ -19,21 +19,22 @@ const accessLogStream = rfs.createStream('access.log', {
 
 
 const development = {
-    name: 'development',
-    port: '8000',
-    asset_path: '/assets',
-    session_cookie_key: 'blashsomething',
-    db: 'placementcellapp_devlopment',
+    name: process.env.PLACEMENTCELL_NAME,
+    port: process.env.PLACEMENTCELL_PORT,
+    asset_path: process.env.PLACEMENTCELL_ASSET_PATH,
+    session_cookie_key: process.env.PLACEMENTCELL_SESSION_COOKIE_KEY,
+    db: process.env.PLACEMENTCELL_DB,
 
     morgan: {
-        mode: 'dev',
+        mode: 'combined', //dev
         options: {stream: accessLogStream}
     }
 }
 
+// module.exports = development;
 
 const production = {
-    name: 'production',
+    name: process.env.PLACEMENTCELL_NAME,
     port: process.env.PLACEMENTCELL_PORT,
     asset_path: process.env.PLACEMENTCELL_ASSET_PATH,
     session_cookie_key: process.env.PLACEMENTCELL_SESSION_COOKIE_KEY,
@@ -47,5 +48,6 @@ const production = {
 
 
 module.exports = eval(process.env.PLACEMENTCELL_ENVIRONMENT) == undefined ? development : eval(process.env.PLACEMENTCELL_ENVIRONMENT);
+
 // We will be using Morgan as a middleware
 // To save the logs in the file we will be using a middleware that will put those logs in the file but also that file can grow huge, to prevent in growing huge either we create a backup for weekly logs or we keep on deleting the older logs. 
