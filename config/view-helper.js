@@ -1,3 +1,6 @@
+// write this line in package.json inside script
+// "prod_start": "set PLACEMENTCELL_ENVIRONMENT=production&& node index.js"
+
 const env = require('../config/environment');
 const fs = require('fs');
 const path = require('path');
