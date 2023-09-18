@@ -20,7 +20,6 @@ mongoose
         console.error(console, "Error connecting to mongodb ==>>", error);
     });
 
-console.log('env::', env.db);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, "Error connecting to mongodb"));
