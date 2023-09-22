@@ -4,7 +4,8 @@
     text-align: center;
 }
 body{
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(194 191 239);    
+    /* background-image: linear-gradient(to right ,rgb(93 58 179), rgb(29 81 202)); */
     overflow: hidden;
 }
 .flex{
